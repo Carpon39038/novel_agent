@@ -14,4 +14,6 @@ export interface LLMConfig {
   temperature: number;
   maxTokens: number;
   baseURL?: string;
+  thinking?: { type: "enabled" | "disabled" };
+  reasoningEffort?: "low" | "medium" | "high";
 }

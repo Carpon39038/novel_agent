@@ -20,7 +20,9 @@ export class OpenAIProvider implements LLMProvider {
         model: this.config.model,
         temperature: Math.min(this.config.temperature, 0.4),
         max_tokens: this.config.maxTokens,
-        messages
+        messages,
+        ...(this.config.thinking ? { thinking: this.config.thinking as Record<string, unknown> } : {}),
+        ...(this.config.reasoningEffort ? { reasoning_effort: this.config.reasoningEffort } : {})
       },
       { signal }
     );
@@ -38,7 +40,9 @@ export class OpenAIProvider implements LLMProvider {
         temperature: this.config.temperature,
         max_tokens: this.config.maxTokens,
         messages,
-        stream: true
+        stream: true,
+        ...(this.config.thinking ? { thinking: this.config.thinking as Record<string, unknown> } : {}),
+        ...(this.config.reasoningEffort ? { reasoning_effort: this.config.reasoningEffort } : {})
       },
       { signal }
     );

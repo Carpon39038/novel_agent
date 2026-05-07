@@ -20,7 +20,11 @@ export const NovelConfigSchema = z.object({
         .max(2)
         .default(DEFAULT_LLM_CONFIG.temperature),
       maxTokens: z.number().positive().default(DEFAULT_LLM_CONFIG.maxTokens),
-      baseURL: z.string().url().optional()
+      baseURL: z.string().url().optional(),
+      thinking: z
+        .object({ type: z.enum(["enabled", "disabled"]) })
+        .optional(),
+      reasoningEffort: z.enum(["low", "medium", "high"]).optional()
     })
     .default({}),
   output: z
